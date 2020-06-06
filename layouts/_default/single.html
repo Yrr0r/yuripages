@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<!--{{.RelPermalink}}-->
+<div id="pagePermalink" hidden=True>{{.Page.Permalink}}</div>
 
 <div id="readerview">
   <div class="container">
@@ -8,7 +8,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{.Site.Home.Permalink}}">主页</a></li>
-        <li class="breadcrumb-item"><a href="{{.Parent.Permalink}}">{{.Parent.Title}}</a></li>
+        <li class="breadcrumb-item"><a href="{{.Parent.RelPermalink}}">{{.Parent.Title}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
       </ol>
     </nav>
@@ -26,10 +26,12 @@
     </div>
 
     <div class="card my-3">
-      <div id="reader-prevNext-bottom" class="btn-group" role="group" aria-label="Basic example">
-        <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
-        {{with .NextInSection}} <a type="button" class="btn btn-light col" href="{{.Permalink}}">上一页：</br> {{.Title}}</a>{{end}}
-        {{with .PrevInSection}} <a type="button" class="btn btn-light col" href="{{.Permalink}}">下一页：</br> {{.Title}}</a>{{end}}
+      <div id="reader-prevNext-bottom" class="card">
+        <div class="row m-0">
+          <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
+          {{with .NextInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>上一页：</b> {{.Title}}</a>{{end}}
+          {{with .PrevInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>下一页：</b> {{.Title}}</a>{{end}}
+        </div>
       </div>
     </div>
   
@@ -50,10 +52,12 @@
     </div>
 
     <div class="card my-3">
-      <div id="reader-prevNext-bottom" class="btn-group" role="group" aria-label="Basic example">
-        <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
-        {{with .NextInSection}} <a type="button" class="btn btn-light col" href="{{.Permalink}}">上一页：</br> {{.Title}}</a>{{end}}
-        {{with .PrevInSection}} <a type="button" class="btn btn-light col" href="{{.Permalink}}">下一页：</br> {{.Title}}</a>{{end}}
+      <div id="reader-prevNext-bottom" class="card">
+        <div class="row m-0">
+          <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
+          {{with .NextInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>上一页：</b> {{.Title}}</a>{{end}}
+          {{with .PrevInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>下一页：</b> {{.Title}}</a>{{end}}
+        </div>
       </div>
     </div>
   
