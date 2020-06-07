@@ -46,3 +46,4 @@ In the `[params]` section of the config file, these options are available:
 - Bookmarks (progress marking) and probably a bookshelf implemented in JavaScript and data is stored in LocalStorage.
 - Night mode, implemented by changing colors using JS.
 - Cover images for books in `index.html` .
+- 文案没中文，差评
