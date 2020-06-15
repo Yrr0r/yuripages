@@ -1,6 +1,15 @@
 {{ define "main" }}
 
-<!--{{.RelPermalink}}-->
+<!--Front info, to be read by a script.-->
+<div id="pageInfo" hidden=true>
+  {
+    "kind" : "{{.Kind}}",
+    "weight": {{.Weight}},
+    "title" : "{{.Title}}",
+    "link" : "{{.RelPermalink}}",
+    "currentSection" : "{{.CurrentSection.Title}}"
+  }
+</div>
 
 <div class="container">
 
