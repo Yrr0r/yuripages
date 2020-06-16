@@ -41,8 +41,8 @@
       <div id="reader-prevNext-bottom" class="card">
         <div class="row m-0">
           <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
-          {{with .NextInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>上一页：</b> {{.Title}}</a>{{end}}
-          {{with .PrevInSection}} <a type="button" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>下一页：</b> {{.Title}}</a>{{end}}
+          {{with .NextInSection}} <a type="button" id="prevlink" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>上一页：</b> {{.Title}}</a>{{end}}
+          {{with .PrevInSection}} <a type="button" id="nextlink" class="btn text-left btn-light col-12 col-md-6" href="{{.Permalink}}"><b>下一页：</b> {{.Title}}</a>{{end}}
         </div>
       </div>
     </div>
