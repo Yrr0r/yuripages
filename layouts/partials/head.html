@@ -8,6 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>{{.Title}}</title>
 
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" integrity="sha256-yYGYRNGM8Fn1Kn2lP3htQYNIzGYt1+JD8AnsVZusheI=" crossorigin="anonymous"></script><script>
+var pjax = new Pjax({
+    debug: true,
+    selectors: [
+    "title",
+    ".block-main",
+    ]
+})
+</script>
 <!-- 
     Then include all CSS and preload JS assets here. 
     If a script should load after the page is loaded, insert it to the foot page.
