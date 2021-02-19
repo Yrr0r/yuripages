@@ -2,26 +2,65 @@
     The Footer.
 -->
 
-<div class="text-center" id="footer">
-    <p>Maintained with love by {{ .Site.Params.author }}</p>
-    <p>{{ .Site.Params.description }}</p>
-    <p>Theme "YuriPages" by Yrr0r.</p>
-</div>
+<footer class="footer">
+  <div class="container">
+    <div class="level">
+      <div class="level-start">
+        {{.Site.Params.author}}
+        <p>Maintained with love by {{ .Site.Params.maintainer }}</p>
+        {{ with .Site.Params.description }}
+          <p> {{ . }} </p>
+        {{ end }}
+      </div>
+      <div class="level-end">
+        <p>Theme <a href="https://github.com/Yrr0r/yuripages">YuriPages</a> by <a href="https://github.com/Yrr0r">Yrr0r</a> & <a href="https://github.com/Gesrua">Gesrua</a>.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.addEventListener('keydown', k => {
+    if (k.code == 'KeyZ') {
+      window.scrollBy({ top: window.innerHeight / 2, left: 0, behavior: 'smooth' });
+    } else if (k.code == 'ArrowRight' && window?.$pagedata?.next) {
+      pjax.loadUrl(window.$pagedata.next)
+    } else if (k.code == 'ArrowLeft' && window?.$pagedata?.prev) {
+      pjax.loadUrl(window.$pagedata.prev)
+    }
+  });
+</script>
+<style>
+  .is-paddingless-horizontal {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
+  .pagenav {
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+  }
 
+  .pagenav span {
+    line-height: 1.25
+  }
 
-<!--
-    Import scripts at the foot of the document.
--->
+  .pagenav span em {
+    display: block;
+    font-style: normal;
+  }
 
-<!--BootStrap CSS-->
-<link href="/cssjs/bootstrap.min.css" rel="stylesheet">
+  .prevbtn {
+    height: auto !important;
+    padding: .75em 1.25em !important;
+    margin-left: 0;
+  }
 
-<!--jQuery-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-<!--BootStrap JS-->
-<script src="/cssjs/bootstrap.bundle.min.js"></script>
-
-<!--My utility script-->
-<script src="/cssjs/utility.js"></script>
+  .nextbtn {
+    height: auto !important;
+    padding: .75em 1.25em !important;
+    margin-left: auto;
+    margin-right: 0
+  }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">

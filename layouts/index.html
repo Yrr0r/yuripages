@@ -1,68 +1,58 @@
 {{ define "main" }}
+<script>
+  window.$pagedata = {
+    type: 'section'
+  }
+</script>
 
-<div class="container">
-  <!--top title-->
-  <h1 class="text-center m-5">
+{{ partial "nav.html" . }}
+
+<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+  <h1 class="has-text-centered title is-1">
     {{.Title}}
   </h1>
-
-  <!--顶部文字-->
-  <div>
-    <div class="p-3">
-      {{if ne .Content nil }}
-        {{with .Content}}
-          {{.}}
-        {{end}}
-      {{ end }}
+  {{if .Params.author }}
+  <article class="message is-link">
+    <div class="message-body has-text-centered">
+      作者：<strong>{{.Params.author}}</strong>
     </div>
-  </div>
-
-
-
-  <!--top cards area-->
-  <div class="row mb-2">
-    {{ range .Pages.ByWeight }}
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm hy-5 overflow-hidden" style="height: 12rem;">
-        <div class="card-body">
-          <a href="{{ .Permalink }}">
-            <h5 class="card-title">
-              {{ .Title | markdownify }}
-            </h5>
-          </a>
-          <div>
-            <small>
-              <!--显示内容个数-->
-              {{ len .Pages }} items </br>
-              <!--显示一段很短的介绍-->
-              {{if ne .Params.shortinfo nil}} {{.Params.shortinfo}} </br> {{end}}
-              <!--显示作者的名字-->
-              {{if ne .Params.author nil}} 作者： {{.Params.author}} </br> {{end}}
-            </small>
+  </article>
+  {{end}}
+  <div class="columns is-centered">
+    {{ with .Content }}
+      <div class="column is-full-mobile is-half-tablet">
+        <article class="message is-info">
+          <div class="message-body has-text-centered">
+            {{ . }}
           </div>
+        </article>
+      <!-- <div class="box">
+  
+        <div class="content has-text-centered is-size-5">
+          {{ . }}
         </div>
-      </div>
+      </div> -->
     </div>
     {{ end }}
+    <div class="column">
+      {{with .Pages}}
+      <!-- <div class="card"> -->
+      <div class="menu">
+        <ul class="menu-list">
+          {{ range .ByWeight }}
+          <li>
+            <a class="is-size-5	has-text-centered has-text-weight-medium" href="#" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
+              {{.Title}}
+              <p class="is-size-6">By <strong>{{.Params.author}}</strong></p>
+            </a>
+          </li>
+          {{end}}
+        </ul>
+        <!-- </div> -->
+  
+      </div>
+      {{end}}
+    </div>
   </div>
-
-
-  <div class="alert alert-dark text-center" role="alert">
-    <h4>上次更新时间</h4>
-    {{now.Format "2006-01-02 15:04:05"}}    
-  </div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-{{ end }}
+</section>
+{{end}}

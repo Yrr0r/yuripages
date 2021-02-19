@@ -1,0 +1,19 @@
+<section class="section is-paddingless-horizontal">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ol>
+      {{ $ctx := .}}
+      {{ with .Params.ancestors }}
+        {{ range . }}
+          {{ with $ctx.GetPage . }}
+            <li>
+              <a href="#" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;"> {{ .Title }}</a>
+            </li>
+          {{ end}}
+        {{ end }}
+      {{ end }}
+      <li class="is-active" aria-current="page">
+        <a href="#">{{ .Title }}</a>
+      </li>
+    </ol>
+  </nav>
+</section>

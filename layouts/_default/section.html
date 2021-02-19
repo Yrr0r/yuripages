@@ -1,62 +1,55 @@
 {{ define "main" }}
-
-<!--Front info, to be read by a script.-->
-<div id="pageInfo" hidden=true>
-  {
-    "kind" : "{{.Kind}}",
-    "weight": {{.Weight}},
-    "title" : "{{.Title}}",
-    "link" : "{{.RelPermalink}}",
-    "currentSection" : "{{.CurrentSection.Title}}"
+<script>
+  window.$pagedata = {
+    type: 'section'
   }
-</div>
+</script>
 
-<div class="container">
+{{ partial "nav.html" . }}
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{.Site.Home.Permalink}}">主页</a></li>
-      <li class="breadcrumb-item"><a href="{{.Parent.Permalink}}">{{.Parent.Title}}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-    </ol>
-  </nav>
-
-  <!--标题和简介-->
-  <div class="card my-3 p-3">
-    <h1 class="text-center"> {{.Title}} </h1>
-    <div>
-      {{.Content}}
+<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+  <h1 class="has-text-centered title is-1">
+    {{.Title}}
+  </h1>
+  {{if .Params.author }}
+  <article class="message is-link">
+    <div class="message-body has-text-centered">
+      作者：<strong>{{.Params.author}}</strong>
     </div>
-  </div>
-  
-  <!--目录区-->
-  {{with .Pages}}
-  <div class="card my-3">
-    <div class="card-header">
-      目录
-    </div>
-    
-    <ul class="list-group list-group-flush">
-
-        {{ range .ByWeight }}
-        <li class="list-group-item">
-          <a href="{{.Permalink}}">{{.Title}}</a>
-        </li>
-        
-        {{end}}
-      
-    </ul>
-   
-  </div>
+  </article>
   {{end}}
+  <div class="columns is-centered">
+    {{ with .Content }}
+      <div class="column is-full-mobile is-half-tablet">
+        <article class="message is-info">
+          <div class="message-body has-text-centered">
+            {{ . }}
+          </div>
+        </article>
+      <!-- <div class="box">
   
-
-</div>
-
-
-
-
-
-
-<!--end main-->
-{{end}} 
+        <div class="content has-text-centered is-size-5">
+          {{ . }}
+        </div>
+      </div> -->
+    </div>
+    {{ end }}
+    <div class="column">
+      {{with .Pages}}
+      <!-- <div class="card"> -->
+      <div class="menu">
+        <ul class="menu-list">
+          {{ range .ByWeight }}
+          <li>
+            <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
+          </li>
+          {{end}}
+        </ul>
+        <!-- </div> -->
+  
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}

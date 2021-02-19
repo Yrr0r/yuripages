@@ -1,0 +1,13 @@
+<section class="section is-paddingless-horizontal has-text-grey-light">
+  <p>
+    上次更新：
+    <span title="{{ .Lastmod }}">{{ .Lastmod.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}</span>
+      {{ with .GitInfo }}<a class="has-text-grey" style="border-bottom: 1px solid currentColor;" href="{{ $.Site.Params.gitRepo }}/commit/{{ .Hash }}" title="{{ .Subject }}" target="_blank">({{ .AbbreviatedHash }})</a>{{ end }}
+      ，<a class="has-text-grey" style="border-bottom: 1px solid currentColor;" href="{{ $.Site.Params.gitRepo }}/commits/master/content/{{ .File.Path }}" target="_blank">更新历史</a>
+  </p>
+  {{if .Site.Params.gitRepo}}
+  <p>
+    <a class="has-text-grey" style="border-bottom: 1px solid currentColor;" href="{{ .Site.Params.gitRepo }}/blob/master/content/{{ .File.Path }}" target="_blank">在 GitHub 上改进此页</a>
+  </p>
+  {{end}}
+</section>

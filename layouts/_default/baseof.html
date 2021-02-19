@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="{{ .Site.Language }}">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
 
-  <body id="body">
+<head>
+  {{ partial "head.html" . }}
+</head>
 
-    <main class="block-main">
-      {{ block "main" . }}
-      {{ end }}
-    </main>
+<body>
+  <div id="pjax-main" class="columns is-centered is-size-5">
+    <div class="column is-three-quarters is-full-mobile">
+      {{ block "main" . }} {{ end }}
+    </div>
+  </div>
+  {{ partial "foot.html" . }}
+</body>
 
-    {{ partial "foot.html" . }}
-  </body>
 </html>
