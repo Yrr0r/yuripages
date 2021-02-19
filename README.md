@@ -33,11 +33,17 @@ To render them, enable unsafe mode for Goldmark:
 
 ### Configurable Parameters
 
+`enableGitInfo = true` use hugo git feature
+
 In the `[params]` section of the config file, these options are available:
 
 `description`  : Part of the footer, describe the site in few words.
 
-`author` : Part of the footer, your name. (It should actually named "maintainer" because there is another front-matter entry called "author".)
+`author`  : Site author
+
+`maintainer` : Part of the footer, your name.
+
+`gitRepo` : GitHub repository link, example: `https://github.com/Yrr0r/yuripages`
 
 ------
 
