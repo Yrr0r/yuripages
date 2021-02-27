@@ -8,6 +8,9 @@
 {{with .PrevInSection}}
     next: '{{.RelPermalink}}',
 {{end}}
+{{with .Parent}}
+    parent: '{{.RelPermalink}}',
+{{end}}
   }
 </script>
 
@@ -27,19 +30,27 @@
   </div>
 </section>
 
+
 <section class="section is-paddingless-horizontal" style="padding-top: 0;">
-  <nav class="pagenav">
-    <!--Hugo的上一页和下一页是反着来的，所以上一页其实是Next，下一页是Prev-->
+  <nav class="level pagenav">
     {{with .NextInSection}}
-    <a id="prevlink" class="button prevbtn is-size-5" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
+    <a id="prevlink" class="level-left button is-size-5 is-narrow" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
       <span>
         <strong>上一章</strong>
         <em>{{.Title}}</em>
       </span>
     </a>
     {{end}}
+    {{with .Parent}}
+    <a class="level-item button is-size-5 is-narrow" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
+      <span>
+        <strong>返回</strong>
+        <em>{{.Title}}</em>
+      </span>
+    </a>
+    {{end}}
     {{with .PrevInSection}}
-    <a id="nextlink" class="button nextbtn is-size-5" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
+    <a id="nextlink" class="level-right button is-size-5 is-narrow" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">
       <span>
         <strong>下一章</strong>
         <em>{{.Title}}</em>
