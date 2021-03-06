@@ -26,17 +26,10 @@
             {{ . }}
           </div>
         </article>
-      <!-- <div class="box">
-  
-        <div class="content has-text-centered is-size-5">
-          {{ . }}
-        </div>
-      </div> -->
     </div>
     {{ end }}
     <div class="column">
       {{with .Pages}}
-      <!-- <div class="card"> -->
       <div class="menu">
         <ul class="menu-list">
           {{ range .ByWeight }}
@@ -44,9 +37,7 @@
             <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
           </li>
           {{end}}
-        </ul>
-        <!-- </div> -->
-  
+        </ul>  
       </div>
       {{end}}
     </div>
