@@ -19,6 +19,15 @@
   </div>
 </footer>
 <script>
+  const mediaQueryList = window.matchMedia("only screen and (prefers-color-scheme: dark)");
+  const onChange = e => {
+    if (e.matches) document.body.classList.add('dark-theme');
+    else document.body.classList.remove('dark-theme')
+  }
+  onChange(mediaQueryList);
+  if (mediaQueryList.addEventListener) mediaQueryList.addEventListener("change", onChange);
+  else mediaQueryList.addListener(onChange);
+
   document.addEventListener('keydown', k => {
     if (k.code == 'KeyZ') {
       window.scrollBy({ top: window.innerHeight / 2, left: 0, behavior: 'smooth' });
