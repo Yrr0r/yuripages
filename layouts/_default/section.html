@@ -46,15 +46,12 @@
 {{ if .Site.Params.advancedNav }}
 <script>
   (() => {
-    path = window.$ancestors.concat('{{.Title}}');
+    path = window.$ancestors.concat('{{.Title}}')
     childs = document.querySelectorAll('#childs>li>a')
     childs.forEach(ele => {
       title = ele.innerText
       exist = window.$history_tree.exist(path.concat(title))
-      if (exist) {
-        console.log(ele)
-        ele.classList.add("have-read")
-      }
+      if (exist) ele.classList.add("have-read")
     })
   })()
 </script>
