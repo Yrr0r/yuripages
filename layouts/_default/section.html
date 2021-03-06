@@ -31,7 +31,7 @@
     <div class="column">
       {{with .Pages}}
       <div class="menu">
-        <ul class="menu-list">
+        <ul id="childs" class="menu-list">
           {{ range .ByWeight }}
           <li>
             <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
@@ -43,4 +43,20 @@
     </div>
   </div>
 </section>
+{{ if .Site.Params.advancedNav }}
+<script>
+  (() => {
+    path = window.$ancestors.concat('{{.Title}}');
+    childs = document.querySelectorAll('#childs>li>a')
+    childs.forEach(ele => {
+      title = ele.innerText
+      exist = window.$history_tree.exist(path.concat(title))
+      if (exist) {
+        console.log(ele)
+        ele.classList.add("have-read")
+      }
+    })
+  })()
+</script>
+{{ end }}
 {{end}}

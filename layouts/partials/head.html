@@ -16,4 +16,27 @@
             "#pjax-main",
         ]
     })
+    {{ if .Site.Params.advancedNav }}
+    window.$history = localStorage.history ? JSON.parse(localStorage.history) : {};
+    window.$history_tree = {
+        exist: function(path) {
+            let cur = window.$history_tree;
+            for(let item of path) {
+                if (!cur[item]) return false;
+                cur = cur[item];
+            }
+            return true;
+        },
+        add_path: function(path) {
+            let cur = window.$history_tree;
+            for(let item of path) {
+                if (!cur[item]) cur[item] = {}
+                cur = cur[item];
+            }
+        }
+    }
+    for(let key in window.$history) {
+        window.$history_tree.add_path(window.$history[key].path)
+    }
+    {{ end }}
 </script>

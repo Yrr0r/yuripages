@@ -61,4 +61,16 @@
   
   {{ partial "copyright.html" . }}
 </section>
+
+{{ if .Site.Params.advancedNav }}
+<script>
+  window.$history["{{.Permalink}}"] = {
+    path: window.$ancestors.concat("{{.Title}}"),
+    time: (new Date()).getTime(),
+  }
+  window.$history_tree.add_path(window.$ancestors.concat("{{.Title}}"))
+  localStorage.lastread = "{{.Permalink}}"
+  localStorage.history = JSON.stringify(window.$history)
+</script>
+{{ end }}
 {{end}}

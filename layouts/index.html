@@ -31,8 +31,21 @@
       {{ end }}
       <div class="column">
         <div class="columns is-paddingless-horizontal is-multiline">
+        {{ if .Site.Params.advancedNav }}
+          <div class="column is-full-mobile is-half-tablet">
+            <a class="button is-outlined is-fullwidth is-primary is-light is-large" href="#" onclick="pjax.loadUrl(localStorage.lastread || '#');return false;">
+              上次阅读
+            </a>
+          </div>
+          <div class="column is-full-mobile is-half-tablet">
+            <a class="button is-outlined is-fullwidth is-link is-light is-large" href="./history/" onclick="pjax.loadUrl('./history/');return false;">
+              历史记录
+            </a>
+          </div>
+          {{ end }}
           {{ with .Pages }}
           {{ range .ByWeight }}
+          {{ if not .Params.ignore }}
           <div class="column is-full-mobile is-half-tablet">
             <div class="card">
               <div class="card-content">
@@ -51,6 +64,7 @@
               </footer>
             </div>
           </div>
+          {{end}}
           {{end}}
         </div>
         {{end}}

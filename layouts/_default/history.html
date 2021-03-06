@@ -1,0 +1,45 @@
+{{ define "main" }}
+<script>
+  window.$pagedata = {
+    type: 'history',
+{{with .NextInSection}}
+    prev: '{{.RelPermalink}}',
+{{end}}
+{{with .PrevInSection}}
+    next: '{{.RelPermalink}}',
+{{end}}
+{{with .Parent}}
+    parent: '{{.RelPermalink}}',
+{{end}}
+  }
+</script>
+
+{{ partial "nav.html" . }}
+
+<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+  <h1 class="has-text-centered title is-1">
+    {{.Title}}
+  </h1>
+  <div class="columns is-centered">
+    <div class="column">
+      <div class="menu">
+        <ul id="history-menu" class="menu-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  arr = [];
+
+  for(let url in window.$history) {
+    arr.push({
+      url: url,
+      path: window.$history[url].path,
+      time: window.$history[url].time
+    })
+  }
+  arr.sort((a, b) => a.time - b.time)
+  document.getElementById("history-menu").innerHTML = arr.map(item => `<a class="is-size-5	has-text-centered has-text-weight-medium" href="${item.url}" onclick="pjax.loadUrl('${item.url}');return false;"><span class="is-size-6 has-text-grey">${item.path.slice(0, -1).join(' / ')}</span><br>${item.path[item.path.length-1]}</a>`).join('')
+</script>
+{{end}}
