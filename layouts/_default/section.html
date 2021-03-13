@@ -11,49 +11,63 @@
   <h1 class="has-text-centered title is-1">
     {{.Title}}
   </h1>
-  {{if .Params.author }}
-  <article class="message is-link">
-    <div class="message-body has-text-centered">
-      作者：<strong>{{.Params.author}}</strong>
-    </div>
-  </article>
-  {{end}}
-  <div class="columns is-centered">
-    {{ with .Content }}
+  <section class="section">
+    {{if .Params.author }}
+    <article class="message is-link">
+      <div class="message-body has-text-centered">
+        作者：<strong>{{.Params.author}}</strong>
+      </div>
+    </article>
+    {{end}}
+    <div class="columns is-centered">
+      {{ if (or .Content .Params.resources) }}
       <div class="column is-full-mobile is-half-tablet">
+        {{ if .Content }}
         <article class="message is-info">
           <div class="message-body">
-            {{ . }}
+            {{ .Content }}
           </div>
         </article>
-    </div>
-    {{ end }}
-    <div class="column">
-      {{with .Pages}}
-      <div class="menu">
-        <ul id="childs" class="menu-list">
-          {{ range .ByWeight }}
-          <li>
-            <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
-          </li>
-          {{end}}
-        </ul>  
+        {{ end }}
+        {{ if .Params.resources }}
+        <div class="columns is-paddingless-horizontal is-multiline">
+          {{ range .Params.resources }}
+          <div class="column is-full-mobile">
+            <a class="button is-fullwidth is-primary is-light is-large" href="{{.link}}" download>{{.name}}</a>
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
       </div>
-      {{end}}
+      {{ end }}
+      <div class="column">
+        {{with .Pages}}
+        <div class="menu">
+          <ul id="childs" class="menu-list">
+            {{ range .ByWeight }}
+            <li>
+              <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}"
+                onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
+            </li>
+            {{end}}
+          </ul>
+        </div>
+        {{end}}
+      </div>
     </div>
-  </div>
+  </section>
 </section>
 {{ if .Site.Params.advancedNav }}
 <script>
-  (() => {
-    path = window.$ancestors.concat('{{.Title}}')
-    childs = document.querySelectorAll('#childs>li>a')
-    childs.forEach(ele => {
-      title = ele.innerText
-      exist = window.$history_tree.exist(path.concat(title))
-      if (exist) ele.classList.add("have-read")
-    })
-  })()
+    (() => {
+      path = window.$ancestors.concat('{{.Title}}')
+      childs = document.querySelectorAll('#childs>li>a')
+      childs.forEach(ele => {
+        title = ele.innerText
+        exist = window.$history_tree.exist(path.concat(title))
+        if (exist) ele.classList.add("have-read")
+      })
+    })()
 </script>
 {{ end }}
 {{end}}
