@@ -2,7 +2,7 @@
 
 # YuriPages
 
-YuriPages is a theme made with BootStrap for novel authors. The main difference than other themes is that categorizing is mainly based on directory structure.
+YuriPages is a theme made with Bulma for novel authors. The main difference than other themes is that categorizing is mainly based on directory structure.
 
 ### Getting Started:
 
@@ -29,7 +29,15 @@ To render them, enable unsafe mode for Goldmark:
 			unsafe = true
 ```
 
+##### Add GitHub link on every chapter page
 
+Example:
+
+```toml
+enableGitInfo = true
+[params]
+  gitRepo = "https://github.com/amaki-aria/amaki-aria.github.io"
+```
 
 ### Configurable Parameters
 
@@ -43,7 +51,6 @@ In the `[params]` section of the config file, these options are available:
 
 # Todo:
 
-- [ ] Bookmarks (progress marking) and probably a bookshelf implemented in JavaScript and data is stored in LocalStorage.
 - [x] Night mode, implemented by changing colors using JS. 
 - [ ] Cover images for books in `index.html` .
 - [x] Turn the page with arrow keys (left = prev page, right = next page, Z = down half page).
