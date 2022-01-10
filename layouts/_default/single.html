@@ -16,13 +16,13 @@
 
 {{ partial "nav.html" . }}
 
-<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+<section class="section" style="padding-top: 0;">
   <h1 class="has-text-centered title is-1">
     {{.Title}}
   </h1>
 </section>
 
-<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+<section class="section" style="padding-top: 0;">
   <div class="container">
     <div class="content is-size-5">
       {{.Content}}
@@ -31,7 +31,7 @@
 </section>
 
 
-<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+<section class="section" style="padding-top: 0;">
   <nav class="level pagenav">
     {{with .NextInSection}}
     <a id="prevlink" class="level-left button is-size-5 is-narrow" href="{{.RelPermalink}}" onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">

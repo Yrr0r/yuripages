@@ -7,7 +7,7 @@
 
 {{ partial "nav.html" . }}
 
-<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+<section class="section" style="padding-top: 0;">
   <h1 class="has-text-centered title is-1">
     {{.Title}}
   </h1>
@@ -30,7 +30,7 @@
       </div>
       {{ end }}
       <div class="column">
-        <div class="columns is-paddingless-horizontal is-multiline">
+        <div class="columns is-multiline">
         {{ if .Site.Params.advancedNav }}
           <div class="column is-full-mobile is-half-tablet">
             <a class="button is-outlined is-fullwidth is-primary is-light is-large" href="#" onclick="pjax.loadUrl(localStorage.lastread || '#');return false;">

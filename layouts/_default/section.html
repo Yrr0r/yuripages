@@ -7,56 +7,56 @@
 
 {{ partial "nav.html" . }}
 
-<section class="section is-paddingless-horizontal" style="padding-top: 0;">
+<section class="section" style="padding-top: 0;">
   <h1 class="has-text-centered title is-1">
     {{.Title}}
   </h1>
-  <section class="section">
-    {{if .Params.author }}
-    <article class="message is-link">
-      <div class="message-body has-text-centered">
-        作者：<strong>{{.Params.author}}</strong>
-      </div>
-    </article>
-    {{end}}
-    <div class="columns is-centered">
-      {{ if (or .Content .Params.resources) }}
-      <div class="column is-full-mobile is-half-tablet">
-        {{ if .Content }}
-        <article class="message is-info">
-          <div class="message-body">
-            {{ .Content }}
-          </div>
-        </article>
-        {{ end }}
-        {{ if .Params.resources }}
-        <div class="columns is-paddingless-horizontal is-multiline">
-          {{ range .Params.resources }}
-          <div class="column is-full-mobile">
-            <a class="button is-fullwidth is-primary is-light is-large" href="{{.link}}" download>{{.name}}</a>
-          </div>
-          {{ end }}
+</section>
+<section class="section" style="padding-top: 0;">
+  {{if .Params.author }}
+  <article class="message is-link">
+    <div class="message-body has-text-centered">
+      作者：<strong>{{.Params.author}}</strong>
+    </div>
+  </article>
+  {{end}}
+  <div class="columns is-centered">
+    {{ if (or .Content .Params.resources) }}
+    <div class="column is-full-mobile is-half-tablet">
+      {{ if .Content }}
+      <article class="message is-info">
+        <div class="message-body">
+          {{ .Content }}
+        </div>
+      </article>
+      {{ end }}
+      {{ if .Params.resources }}
+      <div class="columns is-multiline">
+        {{ range .Params.resources }}
+        <div class="column is-full-mobile">
+          <a class="button is-fullwidth is-primary is-light is-large" href="{{.link}}" download>{{.name}}</a>
         </div>
         {{ end }}
       </div>
       {{ end }}
-      <div class="column">
-        {{with .Pages}}
-        <div class="menu">
-          <ul id="childs" class="menu-list">
-            {{ range .ByWeight }}
-            <li>
-              <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}"
-                onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
-            </li>
-            {{end}}
-          </ul>
-        </div>
-        {{end}}
-      </div>
     </div>
-    {{ partial "sponsor.html" . }}
-  </section>
+    {{ end }}
+    <div class="column">
+      {{with .Pages}}
+      <div class="menu">
+        <ul id="childs" class="menu-list">
+          {{ range .ByWeight }}
+          <li>
+            <a class="is-size-5	has-text-centered has-text-weight-medium" href="{{.RelPermalink}}"
+              onclick="pjax.loadUrl('{{.RelPermalink}}');return false;">{{.Title}}</a>
+          </li>
+          {{end}}
+        </ul>
+      </div>
+      {{end}}
+    </div>
+  </div>
+  {{ partial "sponsor.html" . }}
 </section>
 {{ if .Site.Params.advancedNav }}
 <script>
