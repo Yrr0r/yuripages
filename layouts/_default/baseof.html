@@ -6,8 +6,8 @@
   {{ partial "head.html" . }}
 </head>
 
-<body>
-  <div id="pjax-main" class="columns is-paddingless is-gapless is-centered is-size-5" style="overflow: hidden;">
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <div id="pjax-main" class="columns is-paddingless is-gapless is-centered is-size-5" style="overflow: hidden; flex: 1;">
     <div class="column is-three-quarters is-full-mobile">
       {{ block "main" . }} {{ end }}
     </div>
